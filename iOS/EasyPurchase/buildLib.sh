@@ -22,7 +22,6 @@ build='build/'$cnf'-iphonesimulator/lib'$name'.a'
 
 rm -rf build
 
-# lib2d
 libx64=$libDir'/iOSx64.a'
 echo "build lib x64"
 /usr/bin/xcodebuild \
@@ -30,6 +29,7 @@ echo "build lib x64"
 -target $tag -configuration $cnf \
 -sdk $simulatorsdk build \
 -arch 'x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' \
+OTHER_CFLAGS="-fembed-bitcode" \
 ONLY_ACTIVE_ARCH=NO VALID_ARCHS="x86_64"
 
 cp -rp $build $libx64
@@ -42,6 +42,7 @@ echo "build lib x86"
 -target $tag -configuration $cnf \
 -sdk $simulatorsdk build \
 -arch 'i386' IPHONEOS_DEPLOYMENT_TARGET='7.0' \
+OTHER_CFLAGS="-fembed-bitcode" \
 ONLY_ACTIVE_ARCH=NO VALID_ARCHS="i386"
 
 cp -rp $build $libx86
@@ -57,6 +58,7 @@ echo "build lib arm64"
 -target $tag -configuration $cnf \
 -sdk $iossdk build \
 -arch 'arm64' IPHONEOS_DEPLOYMENT_TARGET='7.0' \
+OTHER_CFLAGS="-fembed-bitcode" \
 ONLY_ACTIVE_ARCH=NO VALID_ARCHS="arm64"
 
 cp -rp $build $libarm64
@@ -69,6 +71,7 @@ echo "build lib armv7"
 -target $tag -configuration $cnf \
 -sdk $iossdk build \
 -arch 'armv7' IPHONEOS_DEPLOYMENT_TARGET='7.0' \
+OTHER_CFLAGS="-fembed-bitcode" \
 ONLY_ACTIVE_ARCH=NO VALID_ARCHS="armv7"
 
 cp -rp $build $libarmv7
